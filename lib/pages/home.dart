@@ -1,5 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shopping_list_app/pages/create_shopping_list.dart';
+import 'package:shopping_list_app/widgets/custom_app_bar.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -8,7 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      appBar: buildAppBar(context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,7 +30,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 10,),
               Center(
-                child: _textButton('Start')
+                child: _startButton(context)
               )
             ]
           )
@@ -37,15 +39,19 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  ElevatedButton _textButton(String text) {
+  ElevatedButton _startButton(BuildContext context) {
     return ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(Color.fromARGB(255, 217, 190, 221)),
                 foregroundColor: WidgetStateProperty.all(Colors.black),
               ),
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => CreateShoppingList())
+                );
               },
-              child: Text(text),
+              child: Text('Start'),
             );
   }
 
@@ -77,60 +83,5 @@ class HomePage extends StatelessWidget {
             )
           ),
         );
-  }
-
-  AppBar appBar() {
-    return AppBar(
-      title: const Text(
-        'Shopping List',
-        style: TextStyle(
-          color: Colors.black,
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.bold,
-          fontSize: 24,
-        ),
-      ),
-      backgroundColor: const Color.fromARGB(255, 217, 190, 221),
-      elevation: 0,
-      centerTitle: true,
-      leading: GestureDetector(
-        onTap: () {
-          // Handle the action when the icon is tapped
-        },
-        child: Container(
-          margin: EdgeInsets.all(10),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 217, 190, 221),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: SvgPicture.asset(
-            'assets/icons/arrow-narrow-left-svgrepo-com.svg',
-            width: 35,
-            height: 35,
-          ),
-        ),
-      ),
-      actions: [
-        GestureDetector(
-          onTap: () {
-            // Handle the action when the icon is tapped
-          },
-          child: Container(
-            margin: EdgeInsets.all(10),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 217, 190, 221),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: SvgPicture.asset(
-              'assets/icons/arrow-right-from-bracket-svgrepo-com.svg',
-              width: 25,
-              height: 25,
-            ),
-          )
-        )
-      ],
-    );
   }
 }
