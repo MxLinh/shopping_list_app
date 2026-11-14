@@ -41,47 +41,47 @@ class HomePage extends StatelessWidget {
 
   ElevatedButton _startButton(BuildContext context) {
     return ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Color.fromARGB(255, 217, 190, 221)),
-                foregroundColor: WidgetStateProperty.all(Colors.black),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => CreateShoppingList())
-                );
-              },
-              child: Text('Start'),
-            );
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all(Color.fromARGB(255, 217, 190, 221)),
+        foregroundColor: WidgetStateProperty.all(Colors.black),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => CreateShoppingList())
+        );
+      },
+      child: Text('Start'),
+    );
   }
 
   Container _searchField() {
     return Container(
-          margin: EdgeInsets.only(top: 40, left: 40, right: 20),
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Color(0xff1D1617).withOpacity(0.11),
-                blurRadius: 40,
-                spreadRadius: 0.0
-              )
-            ]
+      margin: EdgeInsets.only(top: 40, left: 40, right: 20),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            blurRadius: 40,
+            spreadRadius: 0.0
+          )
+        ]
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: EdgeInsets.all(15),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset('assets/icons/search-svgrepo-com.svg'),
           ),
-          child: TextField(
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              contentPadding: EdgeInsets.all(15),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(12),
-                child: SvgPicture.asset('assets/icons/search-svgrepo-com.svg'),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide.none
-              )
-            )
-          ),
-        );
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none
+          )
+        )
+      ),
+    );
   }
 }
